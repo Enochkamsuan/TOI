@@ -113,6 +113,7 @@ export default function Header() {
                         <MenuItem key={item.name}>
                           {({ active }) => (
                             <a
+                              href="/"
                               to={item.href}
                               className={`block px-4 py-2 text-sm ${
                                 active ? "bg-gray-100" : "text-gray-700"

@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
-import bigcardImg from "../../src/assets/images/1.jpg";
+// import bigcardImg from "../../src/assets/images/1.jpg";
 import mediumCardimg from "../../src/assets/images/4.jpg";
 import wideimg from "../../src/assets/images/2.jpg";
 import Ads from "../component/advertisement/ads";
 import axios from "axios";
-// import { AllApiCall } from "../config/API's/apiCalls";
+import "animate.css";
 
 const Home = () => {
-  // const [newsData, setNewsData] = useState(null);
-
+  const [fetchArticle, setFetchArticle] = useState([]);
   const fetchData = async () => {
     try {
-      const response = await axios.get("https://toi2.petergangmei.com/api");
-      console.log("API response:", response.data);
+      const response = await axios.get(
+        "https://toi2.petergangmei.com/api/articles/"
+      );
+      console.log("API response:", response.data.results);
+      setFetchArticle(response.data.results);
     } catch (error) {
       console.error("error fetching API data", error);
     }
@@ -24,9 +26,19 @@ const Home = () => {
     <div className="py-5">
       <div className="flex flex-col lg:flex-row lg:justify-center gap-4">
         <div className="w-full lg:w-[40%]">
-          <div>
-            <img src={bigcardImg} alt="bigcard" className="w-full" />
-          </div>
+          {fetchArticle.slice(0, 1).map((value, ind) => {
+            return (
+              <div
+                key={ind}
+                className="w-full h-64 bg-cover p-2 bg-center relative"
+                style={{ backgroundImage: `url(${value.cover_image})` }}
+              >
+                <div className="text-white text-xl font-bold absolute bottom-1 right-2">
+                  {value.title}
+                </div>
+              </div>
+            );
+          })}
           <div className="mt-4">
             <div className="w-full flex gap-3">
               <div className="w-1/2 flex gap-2 items-center">
