@@ -1,97 +1,72 @@
 import React, { useEffect, useState } from "react";
-// import bigcardImg from "../../src/assets/images/1.jpg";
-import mediumCardimg from "../../src/assets/images/4.jpg";
-import wideimg from "../../src/assets/images/2.jpg";
-import Ads from "../component/advertisement/ads";
-import axios from "axios";
-import "animate.css";
+import { Link } from "react-router-dom";
+import { fetchData } from "../config/API's/apiCalls";
+import defaultImage from "../../src/assets/images/1.jpg";
 
 const Home = () => {
   const [fetchArticle, setFetchArticle] = useState([]);
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(
-        "https://toi2.petergangmei.com/api/articles/"
-      );
-      console.log("API response:", response.data.results);
-      setFetchArticle(response.data.results);
-    } catch (error) {
-      console.error("error fetching API data", error);
-    }
-  };
+
   useEffect(() => {
-    fetchData();
+    const getArticles = async () => {
+      const articles = await fetchData();
+      setFetchArticle(articles);
+    };
+    getArticles();
   }, []);
+
+  const latestArticle = fetchArticle.find((article) => article.id === 1);
   return (
     <div className="py-5">
-      <div className="flex flex-col lg:flex-row lg:justify-center gap-4">
-        <div className="w-full lg:w-[40%]">
-          {fetchArticle.slice(0, 1).map((value, ind) => {
-            return (
+      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-12 gap-4">
+        <div className="col-span-12 md:col-span-12 lg:col-span-6">
+          {latestArticle && (
+            <Link to={`/detail/${latestArticle.id}/${latestArticle.slug}`}>
               <div
-                key={ind}
                 className="w-full h-64 bg-cover p-2 bg-center relative"
-                style={{ backgroundImage: `url(${value.cover_image})` }}
-              >
-                <div className="text-white text-xl font-bold absolute bottom-1 right-2">
-                  {value.title}
+                style={{ backgroundImage: `url(${latestArticle.cover_image})` }}
+              ></div>
+            </Link>
+          )}
+          <div className="grid grid-cols-2 gap-3 mt-4">
+            {fetchArticle.map((value, ind) => {
+              return (
+                <Link to={`/detail/${value.id}/${value.slug}`} key={ind}>
+                  <div>
+                    <img
+                      src={value.cover_image || defaultImage}
+                      alt="cover_image"
+                      className="w-full"
+                    />
+                    <div className="text-xs">{value.title}</div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+        <div className="col-span-12 md:col-span-12 lg:col-span-2">
+          {fetchArticle.map((value, ind) => {
+            return (
+              <Link to={`/detail/${value.id}/${value.slug}`} key={ind}>
+                <div className="w-full bg-cover p-2 bg-center relative">
+                  <img
+                    src={value.cover_image || defaultImage}
+                    alt="cover_image"
+                  />
                 </div>
-              </div>
+                <div className="text-xs">{value.title}</div>
+              </Link>
             );
           })}
-          <div className="mt-4">
-            <div className="w-full flex gap-3">
-              <div className="w-1/2 flex gap-2 items-center">
-                <div className="w-3/12 text-xs">Lorem ipsum dolor sit amet</div>
-                <div className="w-3/4">
-                  <img src={wideimg} alt="wideimg" className="rounded-md" />
-                </div>
-              </div>
-              <div className="w-1/2 flex gap-2 items-center">
-                <div className="w-3/12 text-xs">Lorem ipsum dolor sit amet</div>
-                <div className="w-3/4">
-                  <img src={wideimg} alt="wideimg" className="rounded-md" />
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-        <div className="w-full lg:w-[20%]">
-          <div>
-            <div>
-              <div>
-                <img
-                  src={mediumCardimg}
-                  alt="mediumCardimg"
-                  className="w-full rounded-md"
-                />
-              </div>
-              <div className="text-xs">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptas, neque! Temporibus ipsum
-              </div>
-            </div>
-            <div>
-              <div>
-                <img
-                  src={mediumCardimg}
-                  alt="mediumCardimg"
-                  className="w-full rounded-md"
-                />
-              </div>
-              <div className="text-xs">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptas, neque! Temporibus ipsum
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="w-full lg:w-[40%]">
-          <Ads />
-        </div>
+        <div className="col-span-12 md:col-span-12 lg:col-span-4"></div>
       </div>
     </div>
   );
 };
-
 export default Home;
+{
+  /* <div className="row">
+  <div className="col-6"></div>
+</div> */
+}
