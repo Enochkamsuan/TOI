@@ -23,7 +23,9 @@ const Footer = () => {
         </div>
       </div>
       <div className="mt-5">
-        <div className="text-lg font-bold">Living and Entertainment</div>
+        <div className="text-lg font-bold text-center">
+          Living and Entertainment
+        </div>
         <div className="shadow-md border border-slate-300 rounded-md mt-5 p-3">
           <div className="flex flex-wrap gap-4">
             <div className="text-xs">About Us</div>
@@ -35,7 +37,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="mt-5">
-        <div className="text-lg font-bold">Services</div>
+        <div className="text-lg font-bold text-center">Services</div>
         <div className="shadow-md border border-slate-300 rounded-md mt-5 p-3">
           <div className="flex flex-wrap gap-4">
             <div className="text-xs">About Us</div>

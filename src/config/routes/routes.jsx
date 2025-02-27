@@ -7,7 +7,7 @@ const RoutePage = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />}></Route>
-      <Route path="/detail/:id/:slug" element={<DetaillArticle />}></Route>
+      <Route path="/:slug" element={<DetaillArticle />}></Route>
     </Routes>
   );
 };
