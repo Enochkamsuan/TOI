@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchDetailArticle } from "../../config/API-S/apiCalls";
+import { fetchDetailArticle } from "../../config/API/apiCalls";
 import { useParams } from "react-router-dom";
 import defaultImage from "../../assets/images/1.jpg";
 

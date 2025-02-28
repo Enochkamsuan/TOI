@@ -1,35 +1,30 @@
-import React from "react";
-import mediumCardimg from "../../assets/images/4.jpg";
+import React, { useEffect, useState } from "react";
+import { fetchData } from "../../config/API/apiCalls";
+import defaultImage from "../../assets/images/1.jpg";
+import { Link } from "react-router-dom";
 
 const MediumCard = () => {
+  const [fetchArticle, setFetchArticle] = useState([]);
+
+  useEffect(() => {
+    const getArticles = async () => {
+      const articles = await fetchData();
+      setFetchArticle(articles);
+    };
+    getArticles();
+  }, []);
   return (
     <div>
-      <div>
-        <div>
-          <img
-            src={mediumCardimg}
-            alt="mediumCardimg"
-            className="w-full rounded-md"
-          />
-        </div>
-        <div className="text-xs">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas,
-          neque! Temporibus ipsum
-        </div>
-      </div>
-      <div>
-        <div>
-          <img
-            src={mediumCardimg}
-            alt="mediumCardimg"
-            className="w-full rounded-md"
-          />
-        </div>
-        <div className="text-xs">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas,
-          neque! Temporibus ipsum
-        </div>
-      </div>
+      {fetchArticle.map((value, ind) => {
+        return (
+          <Link to={`/${value.slug}`} key={ind}>
+            <div className="w-full bg-cover p-2 bg-center relative">
+              <img src={value.cover_image || defaultImage} alt="cover_image" />
+            </div>
+            <div className="text-xs">{value.title}</div>
+          </Link>
+        );
+      })}
     </div>
   );
 };
