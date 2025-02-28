@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchData } from "../../config/API's/apiCalls";
+import { fetchDetailArticle } from "../../config/API-S/apiCalls";
 import { useParams } from "react-router-dom";
 import defaultImage from "../../assets/images/1.jpg";
 
@@ -13,9 +13,8 @@ const DetaillArticle = () => {
     const getArticle = async () => {
       setLoading(true);
       try {
-        const articles = await fetchData();
-        const foundArticle = articles.find((item) => item.slug === slug);
-        setContent(foundArticle);
+        const articles = await fetchDetailArticle(slug);
+        setContent(articles);
       } catch (error) {
         console.error("Error fetching article:", error);
       } finally {
@@ -38,17 +37,21 @@ const DetaillArticle = () => {
     <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 items-center gap-3">
       <div>
         <div className="text-3xl font-bold font-georgia pb-5">
-          '{content.title}'
+          '{content.article.title}'
         </div>
         <div>
           <img
-            src={content.cover_image || defaultImage}
+            src={content.article.cover_image || defaultImage}
             alt="cover_image"
             className="w-full rounded-lg"
           />
+          {console.log(
+            "content.article.cover_image",
+            content.article.cover_image
+          )}
         </div>
       </div>
-      <div className="text-md">{content.content}</div>
+      <div className="text-md">{content.article.content}</div>
     </div>
   );
 };

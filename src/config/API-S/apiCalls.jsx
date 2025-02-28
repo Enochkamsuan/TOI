@@ -10,3 +10,14 @@ export const fetchData = async () => {
     return [];
   }
 };
+export const fetchDetailArticle = async (slug) => {
+  try {
+    const response = await axios.get(
+      `https://toi2.petergangmei.com/api/articles/${slug}`
+    );
+
+    return response.data;
+  } catch (error) {
+    return [];
+  }
+};

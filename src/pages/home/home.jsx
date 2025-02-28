@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { fetchData } from "../config/API's/apiCalls";
-import defaultImage from "../../src/assets/images/1.jpg";
-import adsImg from "../../src/assets/images/ads_1.jpg";
+import { fetchData } from "../../config/API-S/apiCalls";
+import defaultImage from "../../assets/images/1.jpg";
+import adsImg from "../../assets/images/ads_1.jpg";
 const Home = () => {
   const [fetchArticle, setFetchArticle] = useState([]);
 

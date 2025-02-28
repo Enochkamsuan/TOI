@@ -8,11 +8,12 @@ import {
   MenuItems,
 } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import logo from "../../assets/images/images.png";
-import TopHeader from "../../component/top_header/top_header";
+import logo from "../../../assets/images/images.png";
+import TopHeader from "../../top_header/top_header";
 import { FaEllipsisH } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
-import top_logo from "../../assets/images/top_logo.jpg";
+import top_logo from "../../../assets/images/top_logo.jpg";
+import { Link } from "react-router-dom";
 
 const navigation = [
   { name: "Maha Kumbh Mela 2025", href: "#", current: true },
@@ -58,11 +59,11 @@ export default function Header() {
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div className="relative flex h-16 items-center justify-between sm:hidden">
             <div className="flex w-full justify-between items-center">
-              {/* Logo */}
-              <div className="flex items-center">
-                <img alt="Your Company" src={logo} className="h-8 w-auto" />
-              </div>
-              {/* Menu Button */}
+              <Link to="/">
+                <div className="flex items-center">
+                  <img alt="Your Company" src={logo} className="h-8 w-auto" />
+                </div>
+              </Link>
               <div className="flex items-center">
                 <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="absolute -inset-0.5" />
@@ -81,11 +82,9 @@ export default function Header() {
           </div>
           <div className="hidden sm:flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex shrink-0 items-center">
-              <img
-                alt="Your Company"
-                src={logo}
-                className="h-8 w-auto xs:none sm:none md:block"
-              />
+              <Link to="/">
+                <img alt="Your Company" src={logo} className="h-8 w-auto" />
+              </Link>
             </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
