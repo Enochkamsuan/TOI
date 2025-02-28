@@ -45,10 +45,6 @@ const DetaillArticle = () => {
             alt="cover_image"
             className="w-full rounded-lg"
           />
-          {console.log(
-            "content.article.cover_image",
-            content.article.cover_image
-          )}
         </div>
       </div>
       <div className="text-md">{content.article.content}</div>
