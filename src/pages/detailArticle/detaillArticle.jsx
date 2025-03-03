@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { fetchDetailArticle } from "../../config/API/apiCalls";
 import { useParams } from "react-router-dom";
 import defaultImage from "../../assets/images/1.jpg";
+// import { useDispatch,useSelector } from "react-redux";
+// import { setAllArticles } from "../../config/redux/slice/slice";
 
 const DetaillArticle = () => {
   const [content, setContent] = useState(null);
   const [loading, setLoading] = useState(true);
-
   const { slug } = useParams();
 
   useEffect(() => {

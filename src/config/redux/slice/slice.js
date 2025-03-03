@@ -3,14 +3,27 @@ import { createSlice } from "@reduxjs/toolkit";
 const newsSlice = createSlice({
   name: "forStoringNews",
   initialState: {
-    news: null,
+    allArticles: [],
+    selectedArticle: null,
+    loading: false,
+    error: null,
   },
   reducers: {
-    setNews: (state, action) => {
-      state.news = action.payload;
+    setAllArticles: (state, action) => {
+      state.allArticles = action.payload;
+    },
+    setSelectedArticles: (state, action) => {
+      state.selectedArticle = action.payload;
+    },
+    setLoading: (state, action) => {
+      state.loading = action.payload;
+    },
+    setError: (state, action) => {
+      state.error = action.payload;
     },
   },
 });
 
-export const { setNews } = newsSlice.actions;
+export const { setAllArticles, setSelectedArticles, setLoading, setError } =
+  newsSlice.actions;
 export default newsSlice.reducer;

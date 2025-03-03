@@ -9,7 +9,7 @@ import store from "./config/redux/store/store";
 function App() {
   return (
     <Provider store={store}>
-      <div className="px-3 sm:px-15 md:px-24 lg:px-26">
+      <div className="px-3 sm:px-16 md:px-16 lg:px-26">
         <BrowserRouter>
           <Header />
           <RoutePage />

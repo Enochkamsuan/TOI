@@ -107,7 +107,7 @@ export default function Header() {
                     <MenuButton className="flex items-center justify-center rounded-md px-3 py-2 text-gray-700 hover:text-gray-500">
                       <FaEllipsisH className="h-6 w-6" />
                     </MenuButton>
-                    <MenuItems className="absolute left-0 mt-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
+                    <MenuItems className="absolute left-0 mt-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none z-10">
                       {hiddenItems.map((item) => (
                         <MenuItem key={item.name}>
                           {({ active }) => (
