@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { fetchData } from "../../config/API/apiCalls";
 import { Link } from "react-router-dom";
 
-const BigCard = () => {
+const FeaturedNews = () => {
   const [fetchArticle, setFetchArticle] = useState([]);
 
   useEffect(() => {
@@ -35,4 +35,4 @@ const BigCard = () => {
   );
 };
 
-export default BigCard;
+export default FeaturedNews;

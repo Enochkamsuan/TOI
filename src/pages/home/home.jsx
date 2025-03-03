@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchData } from "../../config/API/apiCalls";
-import defaultImage from "../../assets/images/1.jpg";
 import adsImg from "../../assets/images/ads_1.jpg";
-import BigCard from "../../component/card/bigCard";
-import MediumCard from "../../component/card/mediumCard";
+import FeaturedNews from "../../component/card/featuredNews";
+import TopSearch from "../../component/card/topSearch";
+import SmallCard from "../../component/card/smallCard";
 const Home = () => {
   const [fetchArticle, setFetchArticle] = useState([]);
 
@@ -20,26 +20,25 @@ const Home = () => {
     <div className="py-5">
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-12 gap-4">
         <div className="col-span-12 md:col-span-12 lg:col-span-6">
-          <BigCard />
+          <FeaturedNews />
           <div className="grid grid-cols-2 gap-3 mt-4">
             {fetchArticle.map((value, ind) => {
               return (
                 <Link to={`/${value.slug}`} key={ind}>
-                  <div>
-                    <img
-                      src={value.cover_image || defaultImage}
-                      alt="cover_image"
-                      className="w-full"
-                    />
-                    <div className="text-xs">{value.title}</div>
-                  </div>
+                  <SmallCard data={value} />
                 </Link>
               );
             })}
           </div>
         </div>
         <div className="col-span-12 md:col-span-12 lg:col-span-2">
-          <MediumCard />
+          {fetchArticle.map((value, ind) => {
+            return (
+              <Link to={`/${value.slug}`} key={ind}>
+                <TopSearch data={value} />
+              </Link>
+            );
+          })}
         </div>
         <div className="col-span-12 md:col-span-12 lg:col-span-4">
           <div>
@@ -47,7 +46,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div></div>
     </div>
   );
 };
